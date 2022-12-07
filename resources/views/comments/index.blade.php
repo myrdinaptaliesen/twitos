@@ -7,7 +7,7 @@
                 <div class="tab-content">
                     <div id="nav-tab-card" class="tab-pane fade show active">
                     <h1>toto</h1>
-                        <h3>Liste des produits</h3>
+                        <h3>Liste des comments</h3>
                         @if(session()->get('success'))
                         <div class="alert alert-success">
                             {{ session()->get('success') }}
@@ -18,24 +18,24 @@
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Nom</th>
-                                    <th scope="col">Description</th>
-                                    <th scope="col">Prix</th>
-                                    <th scope="col">Quantité</th>
+                                    <th scope="col">Contenu</th>
+                                    <th scope="col">Image</th>
+                                    <th scope="col">Tags</th>
+                                    <th scope="col">Quack</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($produits as $produit)
+                                @foreach($comments as $comment)
                                 <tr>
-                                    <td>{{$produit->id}}</td>
-                                    <td>{{$produit->nom}}</td>
-                                    <td>{{$produit->description}}</td>
-                                    <td>{{$produit->prix}}</td>
-                                    <td>{{$produit->quantite}}</td>
+                                    <td>{{$comment->id}}</td>
+                                    <td>{{$comment->content}}</td>
+                                    <td>{{$comment->image}}</td>
+                                    <td>{{$comment->tags}}</td>
+                                    <td>{{$comment->quack_id}}</td>
                                     <td>
-                                        <a href="{{ route('produits.edit', $produit->id)}}" class="btn btn-primary btn-sm">Editer</a>
-                                        <form action="{{ route('produits.destroy', $produit->id)}}" method="POST" style="display: inline-block">
+                                        <a href="{{ route('comments.edit', $comment->id)}}" class="btn btn-primary btn-sm">Editer</a>
+                                        <form action="{{ route('comments.destroy', $comment->id)}}" method="POST" style="display: inline-block">
                                             @csrf
                                             @method('DELETE')
                                             <button class="btn btn-danger btn-sm" type=" submit">Supprimer</button>

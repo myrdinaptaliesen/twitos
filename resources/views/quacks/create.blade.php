@@ -18,42 +18,23 @@
                         </div>
                         @endif
                         <!-- Formulaire -->
-                        <form method="POST" action="{{ route('produits.store') }}">
+                        <form method="POST" action="{{ route('quacks.store') }}">
                             @csrf
                             <div class="form-group">
-                                <label>Nom</label>
-                                <input type="text" name="nom" class="form-control">
+                                <label>Contenu</label>
+                                <input type="text" name="content" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label>Description</label>
-                                <input type="text" name="description" class="form-control">
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label><span class="hidden-xs">Prix</span></label>
-                                        <div class="input-group">
-                                            <input type="number" name="prix" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group mb-4">
-                                        <label>Quantité</label>
-                                        <input type="number" name="quantite" class="form-control">
-                                    </div>
-                                </div>
+                                <label>Image</label>
+                                <input type="text" name="image" class="form-control">
                             </div>
                             <div class="form-group">
-                                <select name="categorie_id" class="custom-select">
-                                    <option value=""> --Catégorie-- </option>
-                                    @foreach($categories as $categorie)
-                                    <option value="{{ $categorie->id }}">{{ $categorie->libele }}</option>
-                                    @endforeach
-                                </select>
+                                <label>Tags</label>
+                                <input type="text" name="tags" class="form-control">
                             </div>
+                            
                             <button type="submit" class="btn btn-primary rounded-pill shadow-sm">
-                                Ajouter un produit </button>
+                                Ajouter un twitos </button>
                         </form>
                         <!-- Fin du formulaire -->
                     </div>

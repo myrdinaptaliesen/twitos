@@ -27,8 +27,8 @@ class CommentsController extends Controller
      */
     public function create()
     {
-        $categories = Quacks::all();
-        return view('comments.create',compact('categories'));
+        $quacks = Quacks::all();
+        return view('comments.create',compact('quacks'));
         // return view('comments.create');
     }
 
@@ -56,7 +56,7 @@ class CommentsController extends Controller
         ]);
 
         return redirect()->route('comments.index')
-            ->with('success', 'Comments ajouté avec succès !');
+            ->with('success', 'Commentaire ajouté avec succès !');
     }
 
     /**
@@ -95,7 +95,7 @@ class CommentsController extends Controller
             'content' => 'required',
             'image' => 'required',
             'tags' => 'required',
-            'tag_id' => 'required',
+            'quack_id' => 'required',
         ]);
 
         Comments::whereId($id)->update($updateComments);

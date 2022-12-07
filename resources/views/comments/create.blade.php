@@ -1,4 +1,4 @@
-@extends('layout')
+<!-- @extends('layout') -->
 @section('content')
 <div class="container py-5">
     <div class="row">
@@ -6,7 +6,7 @@
             <div class="bg-white rounded-lg shadow-sm p-5">
                 <div class="tab-content">
                     <div id="nav-tab-card" class="tab-pane fade show active">
-                        <h3> Ajouter un produit</h3>
+                        <h3> Ajouter un comment</h3>
                         <!-- Message d'information -->
                         @if ($errors->any())
                         <div class="alert alert-danger">
@@ -18,42 +18,31 @@
                         </div>
                         @endif
                         <!-- Formulaire -->
-                        <form method="POST" action="{{ route('produits.store') }}">
+                        <form method="POST" action="{{ route('comments.store') }}">
                             @csrf
                             <div class="form-group">
-                                <label>Nom</label>
-                                <input type="text" name="nom" class="form-control">
+                                <label>Contenu</label>
+                                <input type="text" name="content" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label>Description</label>
-                                <input type="text" name="description" class="form-control">
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label><span class="hidden-xs">Prix</span></label>
-                                        <div class="input-group">
-                                            <input type="number" name="prix" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group mb-4">
-                                        <label>Quantité</label>
-                                        <input type="number" name="quantite" class="form-control">
-                                    </div>
-                                </div>
+                                <label>Image</label>
+                                <input type="text" name="image" class="form-control">
                             </div>
                             <div class="form-group">
-                                <select name="categorie_id" class="custom-select">
-                                    <option value=""> --Catégorie-- </option>
-                                    @foreach($categories as $categorie)
-                                    <option value="{{ $categorie->id }}">{{ $categorie->libele }}</option>
+                                <label>Tags</label>
+                                <input type="text" name="tags" class="form-control">
+                            </div>
+                            
+                            <div class="form-group">
+                                <select name="quack_id" class="custom-select">
+                                    <option value=""> --Twitos-- </option>
+                                    @foreach($quacks as $quack)
+                                    <option value="{{ $quack->id }}">{{ $quack->content }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <button type="submit" class="btn btn-primary rounded-pill shadow-sm">
-                                Ajouter un produit </button>
+                                Ajouter un commentaire </button>
                         </form>
                         <!-- Fin du formulaire -->
                     </div>

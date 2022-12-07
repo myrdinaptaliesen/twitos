@@ -6,7 +6,7 @@
             <div class="bg-white rounded-lg shadow-sm p-5">
                 <div class="tab-content">
                     <div id="nav-tab-card" class="tab-pane fade show active">
-                        <h3>Editer un produit</h3>
+                        <h3>Editer un quack</h3>
                         <!-- Message d'information -->
                         @if ($errors->any())
                         <div class="alert alert-danger">
@@ -18,30 +18,30 @@
                         </div>
                         @endif
                         <!-- Formulaire -->
-                        <form method="post" action="{{ route('produits.update', $produit->id) }}">
+                        <form method="post" action="{{ route('quacks.update', $quack->id) }}">
                             @csrf
                             @method('PATCH')
                             <div class="form-group">
                                 <label>Nom</label>
-                                <input type="text" name="nom" class="form-control" value="{{$produit->nom }}">
+                                <input type="text" name="nom" class="form-control" value="{{$quack->nom }}">
                             </div>
                             <div class="form-group">
                                 <label>Description</label>
-                                <input type="text" name="description" class="form-control" value="{{ $produit->description }}">
+                                <input type="text" name="description" class="form-control" value="{{ $quack->description }}">
                             </div>
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label><span class="hidden-xs">Prix</span></label>
                                         <div class="input-group">
-                                            <input type="number" name="prix" class="formcontrol" value="{{ $produit->prix }}">
+                                            <input type="number" name="prix" class="formcontrol" value="{{ $quack->prix }}">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group mb-4">
                                         <label>Quantité</label>
-                                        <input type="number" name="quantite" class="formcontrol" value="{{ $produit->quantite }}">
+                                        <input type="number" name="quantite" class="formcontrol" value="{{ $quack->quantite }}">
                                     </div>
                                 </div>
                             </div>
