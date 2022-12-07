@@ -7,7 +7,7 @@ use App\Models\Comments;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class Quacks extends Controller
+class CommentsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class Quacks extends Controller
      */
     public function index()
     {
-        $quackss = Quacks::all();
-        return view('quacks.index', compact('quacks'));
+        $comments = Comments::all();
+        return view('comments.index', compact('comments'));
     }
 
     /**
@@ -27,9 +27,9 @@ class Quacks extends Controller
      */
     public function create()
     {
-        $comments = Comments::all();
-        return view('quacks.create',compact('comments'));
-    
+        $categories = Quacks::all();
+        return view('comments.create',compact('categories'));
+        // return view('comments.create');
     }
 
     /**
@@ -41,21 +41,22 @@ class Quacks extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nom' => 'required',
-            'prix' => 'required',
-            'description' => 'required',
-            'quantite' => 'required'
+            'content' => 'required',
+            'image' => 'required',
+            'tags' => 'required',
+            'quack_id' => 'required',
+        
         ]);
 
-        Quacks::create([
-            'nom' => $request->nom,
-            'description' => $request->description,
-            'prix' => $request->prix,
-            'quantite' => $request->quantite,
+        Comments::create([
+            'content' => $request->content,
+            'image' => $request->image,
+            'tags' => $request->tags,
+            'quack_id' => $request->quack_id,
         ]);
 
-        return redirect()->route('quacks.index')
-            ->with('success', 'Quacks ajouté avec succès !');
+        return redirect()->route('comments.index')
+            ->with('success', 'Comments ajouté avec succès !');
     }
 
     /**
@@ -77,8 +78,8 @@ class Quacks extends Controller
      */
     public function edit($id)
     {
-        $quacks = Quacks::findOrFail($id);
-        return view('quacks.edit', compact('quacks'));
+        $comment = Comments::findOrFail($id);
+        return view('comments.edit', compact('comment'));
     }
 
     /**
@@ -90,16 +91,16 @@ class Quacks extends Controller
      */
     public function update(Request $request, $id)
     {
-        $updateQuacks = $request->validate([
-            'nom' => 'required',
-            'prix' => 'required',
-            'description' => 'required',
-            'quantite' => 'required'
+        $updateComments = $request->validate([
+            'content' => 'required',
+            'image' => 'required',
+            'tags' => 'required',
+            'tag_id' => 'required',
         ]);
 
-        Quacks::whereId($id)->update($updateQuacks);
-        return redirect()->route('quacks.index')
-            ->with('success', 'Le quacks mis à jour avec succès !');
+        Comments::whereId($id)->update($updateComments);
+        return redirect()->route('comments.index')
+            ->with('success', 'Le comment mis à jour avec succès !');
     }
 
     /**
@@ -110,8 +111,8 @@ class Quacks extends Controller
      */
     public function destroy($id)
     {
-        $quacks = Quacks::findOrFail($id);
-        $quacks->delete();
-        return redirect('/quacks')->with('success', 'Quacks supprimé avec succès');
+        $comment = Comments::findOrFail($id);
+        $comment->delete();
+        return redirect('/comments')->with('success', 'Comments supprimé avec succès');
     }
 }
