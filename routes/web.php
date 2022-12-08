@@ -5,6 +5,7 @@ use App\Http\Controllers\MainController;
 use App\Http\Controllers\QuacksController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CommentsController;
+use App\Models\Quacks;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,3 +38,5 @@ require __DIR__.'/auth.php';
 Route::resource('quacks', QuacksController::class);
 Route::resource('comments', CommentsController::class);
 Route::resource('/', MainController::class);
+
+Route::get('/comment/{quacks}/create', [CommentsController::class, 'createComment'])->name('comments.createComment');

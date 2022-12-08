@@ -32,6 +32,14 @@ class CommentsController extends Controller
         // return view('comments.create');
     }
 
+    public function createComment($id)
+    {
+        $quack = Quacks::findOrFail($id);
+        // dd($idquack);
+        return view('comments.createComment', compact('quack'));
+  
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -79,7 +87,7 @@ class CommentsController extends Controller
     public function edit($id)
     {
         $comment = Comments::findOrFail($id);
-        return view('comments.edit', compact('comment'));
+        return view('comments.edit',compact('comment'));
     }
 
     /**

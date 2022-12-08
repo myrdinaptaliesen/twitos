@@ -11,7 +11,7 @@
     <br>
     <span>{{$quack->tags}}</span>
     <br>
-        <a href="#" class="stretched-link">Ajouter un commentaire</a>
+        <a href="{{ route('comments.createComment', $quack->id)}}" class="stretched-link">Ajouter un commentaire</a>
     </div>
 </div>
 
