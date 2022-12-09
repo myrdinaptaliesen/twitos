@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Quacks;
+use App\Models\Comments;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -16,7 +17,8 @@ class MainController extends Controller
     public function index()
     {
         $quacks = Quacks::all();
-        return view('main.index', compact('quacks'));
+        $comments = Comments::all();
+        return view('main.index', compact('quacks','comments'));
     }
 
     /**

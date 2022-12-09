@@ -28,6 +28,7 @@ class CommentsController extends Controller
     public function create()
     {
         $quacks = Quacks::all();
+
         return view('comments.create',compact('quacks'));
         // return view('comments.create');
     }
@@ -35,7 +36,7 @@ class CommentsController extends Controller
     public function createComment($id)
     {
         $quack = Quacks::findOrFail($id);
-        // dd($idquack);
+        
         return view('comments.createComment', compact('quack'));
   
     }
@@ -56,14 +57,31 @@ class CommentsController extends Controller
         
         ]);
 
+        $filename = "";
+        if ($request->hasFile('image')) {
+            // On récupère le nom du fichier avec son extension, résultat $filenameWithExt : "jeanmiche.jpg"
+            $filenameWithExt = $request->file('image')->getClientOriginalName();
+            $filenameWithoutExt = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // On récupère l'extension du fichier, résultat $extension : ".jpg"
+            $extension = $request->file('image')->getClientOriginalExtension();
+            // On créer un nouveau fichier avec le nom + une date + l'extension, résultat $fileNameToStore :"jeanmiche_20220422.jpg"
+            $filename = $filenameWithoutExt . '_' . time() . '.' . $extension;
+            // On enregistre le fichier à la racine /storage/app/public/uploads, ici la méthode storeAs défini déjà le chemin /storage/app
+            $path = $request->file('image')->storeAs('public/uploads', $filename);
+        } else {
+            $filename = Null;
+        }
+
         Comments::create([
             'content' => $request->content,
-            'image' => $request->image,
+            'image' => $filename,
             'tags' => $request->tags,
             'quack_id' => $request->quack_id,
         ]);
 
-        return redirect()->route('comments.index')
+        
+
+        return redirect()->route('index')
             ->with('success', 'Commentaire ajouté avec succès !');
     }
 

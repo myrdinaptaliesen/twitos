@@ -19,11 +19,10 @@
                         @endif
                         {{$quack}}
                         <!-- Formulaire -->
-                        <form method="POST" action="{{ route('comments.store') }}">
+                        <form method="POST" action="{{ route('comments.store') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
-                                <label>Contenu</label>
-                                <input type="text" name="content" class="form-control">
+                                <textarea name="content"  cols="30" rows="10" class="form-control">Contenu</textarea>
                             </div>
                             <div class="form-group">
                                 <label>Image</label>

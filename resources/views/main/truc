@@ -1,0 +1,14 @@
+ @foreach($comments as $comment) @if ($comment->quack_id == $quack->id)
+<div class="row g-0 bg-secondary position-relative">
+    <div class="col-md-6 mb-md-0 p-md-4">
+        <img src="{{asset('storage/uploads/' . $comment->image)}}" width="100%">
+    </div>
+    <div class="col-md-6 p-4 ps-md-0">
+        {{$comment->content}}
+        <br>
+        <span>{{$comment->tags}}</span>
+        <br>
+        <a href="{{ route('comments.createComment', $quack->id)}}" class="stretched-link">Ajouter un commentaire</a>
+    </div>
+</div>
+@endif @endforeach
